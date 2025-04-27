@@ -1,0 +1,17 @@
+<div id="create-list-form">
+  <form class="content" [formGroup]="listForm" (ngSubmit)="onSubmit()">
+    <div class="title">
+      <input formControlName="title" placeholder="Titulo">
+    </div>
+    <div class="description">
+      <textarea formControlName="description" placeholder="Descripcion"></textarea>
+    </div>
+    <div class="ia">
+      <button type="button" (click)="generateListDescription()">Generar descripcion</button>
+    </div>
+    <div class="options">
+      <input type="submit">
+      <button (click)="close()">Cancelar</button>
+    </div>
+  </form>
+</div>

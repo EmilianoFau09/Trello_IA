@@ -1,0 +1,36 @@
+<div id="board">
+  <div class="title">
+    <input (change)="putBoardTitle()" [(ngModel)]="boardTitle">
+    <select (change)="putBoardTopic()" [(ngModel)]="boardTopic">
+      <option *ngFor="let topic of topics" [value]="topic">{{topic}}</option>
+    </select>
+    <button (click)="generateListsForBoard()">Generar listas</button>
+  </div>
+  <ul class="lists">
+    <li class="list" *ngFor="let list of lists">
+      <div class="header">
+        <h3>{{list.title}}</h3>
+        <div class="options-list">
+          <button class="edit" (click)="openList(list)"></button>
+          <button class="delete" (click)="deleteList(list.idList)"></button>
+        </div>
+      </div>
+      <ul class="cards">
+        <li class="card" *ngFor="let card of list.cards">
+          <button (click)="openCard(card)">{{card.title}}</button>
+        </li>
+      </ul>
+      <div class="footer">
+        <button (click)="openCreateCardForm(list)">+ Añade una tarjeta</button>
+        <button (click)="generateCardsForList(list.idList, list.title, list.description)">Generar targetas</button>
+      </div>
+    </li>
+    <li class="add-list">
+      <button (click)="openCreateListForm()">+ Añade una lista</button>
+    </li>
+  </ul>
+</div>
+<app-create-card-form *ngIf="isCreateCardFormOpen" [list]="selectedList" (refresh)="getLists()" (closeModal)="closeCreateCardForm()"></app-create-card-form>
+<app-card *ngIf="isCardOpen" [card]="selectedCard" (refresh)="getLists()" (closeModal)="closeCard()"></app-card>
+<app-create-list-form *ngIf="isCreateListFormOpen" (refresh)="getLists()" (closeModal)="closeCreateListForm()"></app-create-list-form>
+<app-list *ngIf="isListOpen" [list]="selectedList" (refresh)="getLists()" (closeModal)="closeList()"></app-list>

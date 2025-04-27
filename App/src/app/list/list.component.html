@@ -1,0 +1,27 @@
+<div id="list" *ngIf="list">
+  <form class="content" [formGroup]="listForm" (ngSubmit)="onSubmit()">
+    <div class="title">
+      <input formControlName="title">
+    </div>
+    <div class="description">
+      <textarea formControlName="description"></textarea>
+    </div>
+    <div class="ia">
+      <div class="actions">
+        <button type="button" (click)="summarizeContent()">Resumir descripcion</button>
+        <button type="button" (click)="expandContent()">Expandir descripcion</button>
+        <button type="button" (click)="rewriteAndCorrectContent()">Reescribir y corregir descripcion</button>
+        <button type="button" (click)="generateVariations()">Generar variaciones de descripcion</button>
+        <button type="button" (click)="correctContent()">Corregir descripcion</button>
+      </div>
+      <div class="preview">
+        <h3>Previsualización</h3>
+        <textarea [value]="iaDescription"></textarea>
+      </div>
+    </div>
+    <div class="options">
+      <input type="submit">
+      <button (click)="close()">Cancelar</button>
+    </div>
+  </form>
+</div>

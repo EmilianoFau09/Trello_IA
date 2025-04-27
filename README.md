@@ -1,1 +1,1 @@
-# Trello_IA
+# Trello_IA_Generativa
